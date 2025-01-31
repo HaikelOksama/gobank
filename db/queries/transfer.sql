@@ -3,7 +3,8 @@ SELECT * FROM transfers
 WHERE id = $1 LIMIT 1;
 
 -- name: ListTransfers :many
-SELECT * FROM transfers;
+SELECT * FROM transfers LIMIT $1
+OFFSET $2;;
 
 -- name: CreateTransfer :one
 INSERT INTO transfers (
