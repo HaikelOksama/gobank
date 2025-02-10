@@ -18,7 +18,7 @@ func createRandomAccount(t *testing.T) Account {
 
 	arg := CreateAccountParams{
 		Owner:    fetchRandName,
-		Balance:  util.RandomInt(1, 1000),
+		Balance:  util.RandomInt(500, 1000),
 		Currency: util.RandomCurrency(),
 	}
 	defer fmt.Printf("arg: %v\n", arg)
@@ -68,11 +68,9 @@ func TestUpdateAccount(t *testing.T) {
 
 	require.NoError(t, err)
 
-	err = testQueries.UpdateAccount(context.Background(), arg)
+	updatedAccount, err := testQueries.UpdateAccount(context.Background(), arg)
 	require.NoError(t, err)
 
-	updatedAccount, err := testQueries.GetAccount(context.Background(), actualAccount.ID)
-	require.NoError(t, err)
 
 	require.NotEmpty(t, getAccount)
 	require.Equal(t, actualAccount.ID, getAccount.ID)

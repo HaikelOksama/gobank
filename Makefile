@@ -4,6 +4,9 @@ postgres:
 createdb:
 	docker exec -it postgres createdb --username=root --owner=root simple_bank
 
+openpgshell:
+	docker exec -it postgres psql -U root -d simple_bank
+
 dropdb:
 	docker exec -it postgres dropdb simple_bank
 
